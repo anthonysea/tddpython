@@ -1,4 +1,4 @@
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
@@ -8,7 +8,7 @@ MAX_WAIT = 10
 
 path = "/mnt/c/Users/Anthony/AppData/Local/Programs/Python/Python36/Scripts/geckodriver.exe"
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox(executable_path=path)
@@ -54,8 +54,6 @@ class NewVisitorTest(LiveServerTestCase):
 
         self.wait_for_row_in_list_table('2: Use peacock feathers to make a fly')
         self.wait_for_row_in_list_table('1: Buy peacock feathers')
-        
-        self.fail('Finish the test!')
 
     def test_can_start_a_list_for_one_user(self):
         self.browser.get(self.live_server_url)
@@ -112,7 +110,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertRegex(francis_list_url, '/lists/.+')
         self.assertNotEqual(francis_list_url, edith_list_url)
 
-        page_text = self.browser.find_elmeny_by_tage_name('body').text
+        page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Buy peacock feathers', page_text)
         self.assertIn('Buy milk', page_text)
 
@@ -122,7 +120,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.browser.set_window_size(1024, 768)
 
         # Input box should be nicely centered
-        inputbox = self.browser.find_elemeny_by_id('id_new_item')
+        inputbox = self.browser.find_element_by_id('id_new_item')
         self.assertAlmostEqual(
             inputbox.location['x'] + inputbox.size['width'] / 2,
             512,
