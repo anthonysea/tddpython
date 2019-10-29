@@ -5,7 +5,7 @@ class NewVisitorTest(unittest.TestCase):
 
     # setUp method is run before each test
     def setUp(self):
-        self.browser = webdriver.Firefox()
+        self.browser = webdriver.Firefox("C:/Users/Anthony/Documents/coding/python_projects/tddpython")
 
     # tearDown method is run after each test
     def tearDown(self):
