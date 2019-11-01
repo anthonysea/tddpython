@@ -1,9 +1,10 @@
+from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 import unittest
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
 
     # setUp method is run before each test
     def setUp(self):
@@ -21,7 +22,7 @@ class NewVisitorTest(unittest.TestCase):
     # Any method whose name starts with test is a test method, and will be run by the test runner
     def test_can_start_a_list_and_retrieve_it_later(self):
         # Users goes to check out to-do list homepage
-        self.browser.get("http://localhost:8000")
+        self.browser.get(self.live_server_url)
 
         # User notices the page title and header mention to-do lists
         self.assertIn("To-Do", self.browser.title)
@@ -63,6 +64,3 @@ class NewVisitorTest(unittest.TestCase):
         # User visits that URL, and the to-do list is still there
 
         # User leaves the page
-
-if __name__ == "__main__":
-    unittest.main(warnings="ignore")
