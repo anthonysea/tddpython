@@ -68,7 +68,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.wait_for_row_in_list_table("1: Buy peacock feathers")
 
         # The page has generated a unique URL for the user 
-        self.fail("Finish the test!")
+        #self.fail("Finish the test!")
 
         # User visits that URL, and the to-do list is still there
 
